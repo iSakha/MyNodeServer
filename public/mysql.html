@@ -13,7 +13,6 @@
 </head>
 
 <body>
-    <h1>Happy birthday, Victor!</h1>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -47,10 +46,53 @@
             </div>
         </div>
     </nav>
+    <div class="container">
+        <h2>MySQL</h2>
+    </div>
 
-    <h2>MySQL</h2>
+    <p></p>
+    <div class="mysql d-flex flex-row container">
 
-    
+        <div class="mysql-side">
+            <div class="btn-group-vertical">
+                <button id="test" type="button" class="btn btn-outline-primary" style="text-align: left">Test connection to mysql
+                    server</button>
+                <button id="work" type="button" class="btn btn-outline-primary" style="text-align: left">Work with
+                    database</button>
+            </div>
+
+        </div>
+        <div class="space">
+
+        </div>
+        <div class="mysql-main">
+            <div class="connect d-none">
+                <form>
+                    <div class="container">
+                        <div class="row col-6">
+                            <input class="form-control" type="text" placeholder="Username">
+                            <input class="form-control" type="password" placeholder="Password">
+                        </div>
+                        <p></p>
+                        <div class="row col-3">
+                            <button class="btn btn-success col-1 form-control">Connect</button>
+                            <p></p>
+                            <button class="btn btn-secondary col-1 form-control">Disonnect</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="connect d-none" >
+                <h2>test</h2>
+            </div>
+        </div>
+
+    </div>
+
+
+
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
