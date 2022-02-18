@@ -16,16 +16,29 @@ app.get("/mysql", function (request, response) {
 });
 
 app.post("/mysql/connect", jsonParser, function (request, response) {
-  console.log(request.body);
+  // console.log(request.body);
   getCreds(request.body);
-  let sqlResponse = connectToMysqlServer();
+  // let sqlResponse = openConnection();
   console.log(request.body);
-  console.log("res: " + sqlResponse);
+  // console.log("res: " + sqlResponse);
+
   if (!request.body) return response.sendStatus(400);
 
   // response.json(request.body); // отправляем пришедший ответ обратно
-  response.json({ "result": "ok" });
+  myResponse(response);
+
 });
+
+async function myResponse(response) {
+  await openConnection();
+  
+  if(result == "success") {
+    response.json({"result": "success"});
+  }else {
+    response.json({"result": "error"});
+  }
+  
+}
 
 app.post("/mysql/disconnect", jsonParser, function (request, response) {
   console.log(request.body);
@@ -50,12 +63,12 @@ const mysql = require("mysql2");
 
 
 function getCreds(user) {
-  console.log(user);
+  // console.log(user);
   userName = user.name;
   userPass = user.pass;
 }
 // ==========================================================================
-function openConnection() {
+async function openConnection() {
 
   connection = mysql.createConnection({
     host: "localhost",
@@ -65,13 +78,13 @@ function openConnection() {
     password: userPass
     
   });
-  
-return connection;
+
+return connectToMysqlServer(connection); 
   // return connectToMysqlServer();
 } 
 
-  function connectToMysqlServer() {
-    connection  = openConnection();
+  function connectToMysqlServer(connection) {
+    // connection  = openConnection();
 
     //    Test connection
     connection.connect(function (err) {
