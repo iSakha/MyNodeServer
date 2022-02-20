@@ -9,8 +9,18 @@ async function connectToMysqlServer(user, pass) {
         password: pass
     });
 
+    let res = await testConnection(connection);
+    console.log("res is: " + res);
+    return "success";
+    // return "error";
+    // return res
+}
+
+
+
+async function testConnection(connection) {
     //    Test connection
-    await connection.connect(function (err) {
+    connection.connect(function (err) {
         if (err) {
             console.error("Error: " + err.message);
             let result = "error"
@@ -26,8 +36,6 @@ async function connectToMysqlServer(user, pass) {
 
     });
 
-    // return "success";
-    return "error";
 
 }
 
