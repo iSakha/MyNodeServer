@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "ping": "^0.4.1",
+    "wake_on_lan": "^1.0.0"
   }
 }
