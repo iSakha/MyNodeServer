@@ -10,17 +10,23 @@ const wol = require('wake_on_lan');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//      Get Home page
+// ==========================================================
 app.use(express.static(__dirname + "/public"));
-
-app.use("/mysql/connect", mw);
-
+//      Get Mysql page
+// ==========================================================
 app.get("/mysql", function (request, response) {
   response.sendFile(__dirname + "/public/mysql.html");
 });
-
+//      Get test page
+// ==========================================================
 app.get("/testpage", function (request, response) {
   response.sendFile(__dirname + "/public/testpage.html");
 });
+
+//      Connect to db
+// ==========================================================
+app.use("/mysql/connect", mw);
 
 //      Wake on lan
 // ==========================================================
@@ -48,25 +54,24 @@ app.get("/wol/homepc", function (request, response) {
 // =========================================================
 
 app.post("/ping", function (request, response) {
-  console.log('We got ping!');
+  console.log('We sent ping to', request.body.ip);
   let result = { msg: "msg" };
-  let hosts = ['192.168.101.7'];
-  // hosts.forEach(function (host) {
-  //   ping.sys.probe(host, function (isAlive) {
-  //     // var msg = isAlive ? 'host ' + host + ' is alive' : 'host ' + host + ' is dead';
-  //     var msg = isAlive ? 'host is alive' : 'host is dead';
-  //     result = { msg: msg };
-  //     console.log(result);
-  //   });
-  // });
-  response.send(result);
+  let hosts = [request.body.ip];
+
+  hosts.forEach(function (host) {
+    ping.sys.probe(host, function (isAlive) {
+      var msg = isAlive ? 'host is alive' : 'host is dead';
+      result = { msg: msg };
+      console.log(result);
+      response.send(result);
+    });
+  });
+
 });
 
 
 
 
-
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-});
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+  });
