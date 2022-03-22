@@ -100,11 +100,22 @@ function getEventsList() {
         .then(data => {
             // enter you logic when the fetch is successful
             console.log(data);
-            // createHtmlCalendarList(data);
+            createEventTable(data);
         })
         .catch(error => {
             // enter your logic for when there is an error (ex. error toast)
             console.log(error)
         })
+
+}
+
+function createEventTable(data) {
+    document.getElementById('div-table').classList.remove('d-none');
+    if (data.length == 0) {
+        alert('Something goes wrong!');
+        return;
+    }
+    let tblBody = document.getElementById('events-table-body');
+    // tblBody.innerHTML = "";
 
 }
