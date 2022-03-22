@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.17.2",
     "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
     "ping": "^0.4.1",
     "wake_on_lan": "^1.0.0"
   }
