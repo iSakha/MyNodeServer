@@ -116,6 +116,44 @@ function createEventTable(data) {
         return;
     }
     let tblBody = document.getElementById('events-table-body');
-    // tblBody.innerHTML = "";
+    tblBody.innerHTML = "";
+
+    for (let i = 0; i < data.length; i++) {
+        let row = document.createElement('tr');
+        let cell = document.createElement("td");
+        cell.innerHTML = data[i].id;
+        row.appendChild(cell);
+
+        cell = document.createElement("td");
+        // console.log(events[i].id_cal);
+        cell.innerHTML = data[i].cal_name;
+        row.appendChild(cell);
+
+        cell = document.createElement("td");
+        cell.innerHTML = data[i].event_name;
+        row.appendChild(cell);
+
+        cell = document.createElement("td");
+        let eventStartDate = data[i].start_date.slice(0, 10);
+        cell.innerHTML = eventStartDate;
+        row.appendChild(cell);
+
+        cell = document.createElement("td");
+        let eventEndDate = data[i].end_date.slice(0, 10);
+        cell.innerHTML = eventEndDate;
+        row.appendChild(cell);
+
+        cell = document.createElement("td");
+        cell.innerHTML = data[i].notes;
+        row.appendChild(cell);
+
+        cell = document.createElement("td");
+        cell.innerHTML = data[i].location;
+        row.appendChild(cell);
+
+
+        tblBody.appendChild(row)
+    }
+    tbl.append(tblBody)
 
 }
