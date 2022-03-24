@@ -1,0 +1,18 @@
+.home-side {
+    min-width:40px;
+}
+
+.table-home {
+    height: 125px;
+    width:200px;
+    text-align: center;
+}
+
+.t-row {
+    height:41px
+}
+
+.t-text {
+    color: red;
+    font-weight: bold;
+}
