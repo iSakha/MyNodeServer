@@ -108,7 +108,8 @@ function getEventsList() {
         })
 
 }
-
+//          Create event table
+// ==============================================================================
 function createEventTable(data) {
     document.getElementById('div-table').classList.remove('d-none');
     if (data.length == 0) {
@@ -156,4 +157,24 @@ function createEventTable(data) {
     }
     tbl.append(tblBody)
 
+}
+
+
+//          Work with time and timezone
+// ==============================================================================
+let str_date;
+let str_time;
+document.getElementById('btn-get-txt').addEventListener('click', getString);
+
+function getString() {
+    str_date = document.getElementById('date-picker').value;
+    str_time = document.getElementById('hours').value + ':' + document.getElementById('minutes').value;
+    // console.log(str_date,str_time);
+    let lbl = document.getElementById('lbl-data');
+    lbl.innerHTML = str_date + ' ' + str_time;
+
+    let dt = new Date(lbl.innerHTML);
+    let lbl_obj = document.getElementById('lbl-data-obj');
+    lbl_obj.innerHTML = dt;
+    console.log(dt);
 }
