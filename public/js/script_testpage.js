@@ -164,6 +164,7 @@ function createEventTable(data) {
 // ==============================================================================
 let str_date;
 let str_time;
+let dtObj;
 document.getElementById('btn-get-txt').addEventListener('click', getString);
 
 function getString() {
@@ -173,8 +174,41 @@ function getString() {
     let lbl = document.getElementById('lbl-data');
     lbl.innerHTML = str_date + ' ' + str_time;
 
-    let dt = new Date(lbl.innerHTML);
+    dtObj = new Date(lbl.innerHTML);
     let lbl_obj = document.getElementById('lbl-data-obj');
-    lbl_obj.innerHTML = dt;
-    console.log(dt);
+    lbl_obj.innerHTML = dtObj;
+    // console.log(dt);
+    // console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
+    // console.log(dt.getTimezoneOffset() / 60);
+
+    document.getElementById('btn-get-tzone').disabled = false;
+    document.getElementById('btn-get-tz-offset').disabled = false;
+    document.getElementById('btn-get-UTC').disabled = false;
+
+}
+//          Get timezone
+// ==============================================================================
+document.getElementById('btn-get-tzone').addEventListener('click', getTimeZone);
+
+function getTimeZone() {
+    document.getElementById('lbl-tzone').innerHTML = Intl.DateTimeFormat().resolvedOptions().timeZone;
+}
+
+//          Get TimezoneOffset         
+// ==============================================================================
+document.getElementById('btn-get-tz-offset').addEventListener('click', getTimeZoneOffset);
+
+function getTimeZoneOffset() {
+    document.getElementById('lbl-tz-offset').innerHTML = dtObj.getTimezoneOffset() / 60;
+
+}
+
+//          Get Date in UTC format         
+// ==============================================================================
+document.getElementById('btn-get-UTC').addEventListener('click', getTimeUTC);
+
+function getTimeUTC() {
+    document.getElementById('lbl-UTC').innerHTML = dtObj.toISOString();
+
+    // console.log(dtObj.toISOString());
 }
